@@ -1,14 +1,17 @@
 <?php
 
+require_once __DIR__ . '/InterfaceFila.php';
+require_once __DIR__ . '/FilaElevador.php';
+
 class Elevador
 {
-    private $filaChamados;
-    private $andarAtual;
-    private $capacidade;
+    private InterfaceFila $filaChamados;
+    private int $andarAtual;
+    private int $capacidade;
 
     public function __construct(int $capacidade)
     {
-        $this->filaChamados = new SplQueue();
+        $this->filaChamados = new FilaElevador();
         $this->andarAtual = 0; // Andar inicial
         $this->capacidade = $capacidade;
     }
@@ -18,13 +21,13 @@ class Elevador
         if ($andar < 0) {
             throw new InvalidArgumentException("Andar inválido: $andar");
         }
-        $this->filaChamados->enqueue($andar);
+        $this->filaChamados->enfileirar($andar);
     }
 
     public function mover()
     {
-        if (!$this->filaChamados->isEmpty()) {
-            $proximoAndar = $this->filaChamados->dequeue();
+        if (!$this->filaChamados->estaVazia()) {
+            $proximoAndar = $this->filaChamados->desenfileirar();
             $this->andarAtual = $proximoAndar;
             echo "Elevador movendo para o andar: $proximoAndar\n";
         }
@@ -35,7 +38,7 @@ class Elevador
         return $this->andarAtual;
     }
 
-    public function getChamadosPendentes()
+    public function getChamadosPendentes(): InterfaceFila
     {
         return clone $this->filaChamados;
     }
