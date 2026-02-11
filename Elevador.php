@@ -1,12 +1,8 @@
 <?php
 
-namespace App;
-
-use SplQueue;
-
 class Elevador
 {
-    private SplQueue $filaChamados;
+    private $filaChamados;
     private $andarAtual;
     private $capacidade;
 
@@ -20,9 +16,8 @@ class Elevador
     public function chamar(int $andar)
     {
         if ($andar < 0) {
-            throw new \InvalidArgumentException("Andar inválido: $andar");
+            throw new InvalidArgumentException("Andar inválido: $andar");
         }
-
         $this->filaChamados->enqueue($andar);
     }
 
@@ -40,7 +35,7 @@ class Elevador
         return $this->andarAtual;
     }
 
-    public function getChamadosPendentes(): SplQueue
+    public function getChamadosPendentes()
     {
         return clone $this->filaChamados;
     }

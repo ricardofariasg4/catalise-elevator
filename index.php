@@ -1,8 +1,6 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
-
-use App\Elevador;
+require_once __DIR__ . '/Elevador.php';
 
 function exibirChamadosPendentes(Elevador $elevador)
 {
