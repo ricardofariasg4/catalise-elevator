@@ -21,7 +21,7 @@ Esse projeto demonstra o funcionamento de uma fila FIFO (First In, First Out) pa
 	Depois, acesse http://localhost:8000 no navegador.
 
 ## Estrutura dos arquivos
-- `public/index.php`: Script principal de simulação do elevador.
-- `public/Elevador.php`: Classe com a lógica do elevador.
+- `index.php`: Script principal de simulação do elevador.
+- `Elevador.php`: Classe com a lógica do elevador.
 
 Não é necessário Composer ou qualquer dependência externa.
