@@ -30,7 +30,10 @@ class Elevador
             $proximoAndar = $this->filaChamados->desenfileirar();
             $this->andarAtual = $proximoAndar;
             echo "Elevador movendo para o andar: $proximoAndar\n";
+            return;
         }
+
+        echo "A fila de chamados está vazia. O elevador permanece no andar: {$this->andarAtual}\n";
     }
 
     public function getAndarAtual(): int
